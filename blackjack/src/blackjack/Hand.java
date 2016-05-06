@@ -1,23 +1,17 @@
 package blackjack;
-import java.util.List;
+
+import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * This class represents a Board that can be used in a collection
- * of solitaire games similar to Elevens.  The variants differ in
- * card removal and the board size.
- */
-public abstract class Board {
-
-	/**
-	 * The cards on this board.
-	 */
-	private Card[] cards;
+public abstract class Hand {
+	private List<Card> cards = new ArrayList<Card>();
+	//private Card[] cards;
 
 	/**
 	 * The deck of cards being used to play the current game.
 	 */
-	private Deck deck;
+	//private Deck deck;
 
 	/**
 	 * Flag used to control debugging print statements.
@@ -32,23 +26,20 @@ public abstract class Board {
 	 * @param pointValues the integer values of the cards needed to create
 	 *                    the deck
 	 */
-	public Board(int size, String[] ranks, String[] suits, int[] pointValues) {
-		cards = new Card[size];
-		deck = new Deck(ranks, suits, pointValues);
-		if (I_AM_DEBUGGING) {
-			System.out.println(deck);
-			System.out.println("----------");
-		}
-		dealMyCards();
+	public Hand(int size, Deck deck) {
+
+		//cards = new Card[size];
+		dealMyCards(deck);
 	}
 
 	/**
 	 * Start a new game by shuffling the deck and
 	 * dealing some cards to this board.
 	 */
-	public void newGame() {
+	public void newGame(Deck deck) {
 		deck.shuffle();
-		dealMyCards();
+		cards.clear();
+		dealMyCards(deck);
 	}
 
 	/**
@@ -58,7 +49,7 @@ public abstract class Board {
 	 * @return the size of the board
 	 */
 	public int size() {
-		return cards.length;
+		return cards.size();
 	}
 
 	/**
@@ -66,8 +57,8 @@ public abstract class Board {
 	 * @return true if this board is empty; false otherwise.
 	 */
 	public boolean isEmpty() {
-		for (int k = 0; k < cards.length; k++) {
-			if (cards[k] != null) {
+		for (int k = 0; k < cards.size(); k++) {
+			if (cards.get(k) != null) {
 				return false;
 			}
 		}
@@ -79,15 +70,15 @@ public abstract class Board {
 	 * If the deck is empty, the kth card is set to null.
 	 * @param k the index of the card to be dealt.
 	 */
-	public void deal(int k) {
-		cards[k] = deck.deal();
+	public void deal(Deck deck) {
+		cards.add(deck.deal());
 	}
 
 	/**
 	 * Accesses the deck's size.
 	 * @return the number of undealt cards left in the deck.
 	 */
-	public int deckSize() {
+	public int deckSize(Deck deck) {
 		return deck.size();
 	}
 
@@ -97,7 +88,7 @@ public abstract class Board {
 	 * @param k is the board position of the card to return.
 	 */
 	public Card cardAt(int k) {
-		return cards[k];
+		return cards.get(k);
 	}
 
 	/**
@@ -105,11 +96,11 @@ public abstract class Board {
 	 * @param selectedCards is a list of the indices of the
 	 *        cards to be replaced.
 	 */
-	public void replaceSelectedCards(List<Integer> selectedCards) {
+	/*public void replaceSelectedCards(List<Integer> selectedCards) {
 		for (Integer k : selectedCards) {
 			deal(k.intValue());
 		}
-	}
+	}*/
 
 	/**
 	 * Gets the indexes of the actual (non-null) cards on the board.
@@ -119,8 +110,8 @@ public abstract class Board {
 	 */
 	public List<Integer> cardIndexes() {
 		List<Integer> selected = new ArrayList<Integer>();
-		for (int k = 0; k < cards.length; k++) {
-			if (cards[k] != null) {
+		for (int k = 0; k < cards.size(); k++) {
+			if (cards.get(k) != null) {
 				selected.add(new Integer(k));
 			}
 		}
@@ -133,8 +124,8 @@ public abstract class Board {
 	 */
 	public String toString() {
 		String s = "";
-		for (int k = 0; k < cards.length; k++) {
-			s = s + k + ": " + cards[k] + "\n";
+		for (int k = 0; k < cards.size(); k++) {
+			s = s + k + ": " + cards.get(k).toString() + "\n";
 		}
 		return s;
 	}
@@ -145,7 +136,7 @@ public abstract class Board {
 	 * @return true when the current game has been won;
 	 *         false otherwise.
 	 */
-	public boolean gameIsWon() {
+/*	public boolean gameIsWon() {
 		if (deck.isEmpty()) {
 			for (Card c : cards) {
 				if (c != null) {
@@ -155,31 +146,20 @@ public abstract class Board {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Method to be completed by the concrete class that determines
-	 * if the selected cards form a valid group for removal.
-	 * @param selectedCards the list of the indices of the selected cards.
-	 * @return true if the selected cards form a valid group for removal;
-	 *         false otherwise.
-	 */
-	public abstract boolean isLegal(List<Integer> selectedCards);
-
-	/**
-	 * Method to be completed by the concrete class that determines
-	 * if there are any legal plays left on the board.
-	 * @return true if there is a legal play left on the board;
-	 *         false otherwise.
-	 */
-	public abstract boolean anotherPlayIsPossible();
+	}*/
+	public abstract boolean won(Hand other);
+	public abstract int score();
+	public abstract boolean twentyOne();
+	public abstract boolean bust();
+	public abstract void draw(Graphics window, int x, int y, boolean isDealer);
 
 	/**
 	 * Deal cards to this board to start the game.
 	 */
-	private void dealMyCards() {
-		for (int k = 0; k < cards.length; k++) {
-			cards[k] = deck.deal();
+	private void dealMyCards(Deck deck) {
+		for (int k = 0; k < 2; k++) {
+			//cards.set(k, deck.deal());
+			cards.add(deck.deal());
 		}
 	}
 }

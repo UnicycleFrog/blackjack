@@ -1,4 +1,12 @@
 package blackjack;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 /**
  * Card.java
  *
@@ -20,7 +28,7 @@ public class Card {
 	 * int value that holds the point value.
 	 */
 	private int pointValue;
-
+	private Image image;
 
    /**
 	 * Creates a new <code>Card</code> instance.
@@ -62,7 +70,18 @@ public class Card {
 	public int pointValue() {
 		return pointValue;
 	}
-
+	public void draw(Graphics window, int x, int y, boolean faceDown) {
+		try {
+			if (faceDown)
+				image = ImageIO.read(new File("src/blackjack/cards/back1.GIF"));
+			else
+				image = ImageIO.read(new File("src/blackjack/cards/" +  rank + suit +  ".GIF"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		window.drawImage(image, x, y, 73, 97, null);
+	}
 	/** Compare this card with the argument.
 	 * @param otherCard the other card to compare to this
 	 * @return true if the rank, suit, and point value of this card
