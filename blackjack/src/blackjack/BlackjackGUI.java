@@ -107,6 +107,8 @@ public class BlackjackGUI extends Canvas implements ActionListener{
      }
 	 public void fileReader() {
 		 file = new File("src/blackjack/log.txt");
+		 totalWins = 0;
+		 gamesPlayed = 0;
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
