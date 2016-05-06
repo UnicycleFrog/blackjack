@@ -1,5 +1,10 @@
 # blackjack
 java blackjack based on elevens
+
+## Screenshot
+
+![Screenshot](https://raw.githubusercontent.com/UnicycleFrog/blackjack/screenshot/screenshot.png "A screenshot of the game")
+
 ## Synopsis
 
 This game uses the card and deck classes from the Elevens Lab. It is a simple blackjack game that keeps track of the score using a txt file.
