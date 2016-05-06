@@ -3,10 +3,35 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * The ElevensBoard class represents the board in a game of Elevens.
+ * Black jack dumb code
+ * 
+ * int player count = sum of player cards
+ * int dealer count = sum of dealer cards
+ * 
+ * deal cards.....
+ * if player or dealer count ==21, player or dealer win
+ * 
+ * if player count<21 player have option to hit or stand                  loop it a few times
+ * if hit, player count = new random card + player count
+ * 
+ * else (player over 21/bust) player loose
+ * 
+ * 
+ * 
+ * if player stand 
+ * if dealer count< 17, dealer hit. else dealer stand
+ * if dealer > 21, dealer bust
+ * 
+ * 
+ * if player>dealer, player win. else dealer win.
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  */
 public class BlackjackBoard extends Board {
-
 	/**
 	 * The size (number of cards) on the board.
 	 */
@@ -54,6 +79,16 @@ public class BlackjackBoard extends Board {
 		super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
 	}
 
+<<<<<<< HEAD
+=======
+	public int score(List<Integer> selectedCards) {
+		int player = 0;
+		int dealer = 0;
+		for (int i : selectedCards)
+			player += i;
+		return 0;
+	}
+>>>>>>> ab12a8dcc96fec92b515325f1e953ea1bf6478e4
 	/**
 	 * Determines if the selected cards form a valid group for removal.
 	 * In Elevens, the legal groups are (1) a pair of non-face cards
