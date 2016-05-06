@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * It provides several operations including
  *      initialize, shuffle, deal, and check if empty.
  */
-public class Deck {
+public class Deck implements DeckInterface {
 
 	/**
 	 * cards contains all the cards in the deck.
@@ -57,17 +57,6 @@ public class Deck {
 		shuffle();
 	}
 
-
-	/**
-	 * Determines if this deck is empty (no undealt cards).
-	 * @return true if this deck is empty, false otherwise.
-	 */
-	public boolean isEmpty() {
-		if (size == 0)
-			return true;
-		return false;
-	}
-
 	/**
 	 * Accesses the number of undealt cards in this deck.
 	 * @return the number of undealt cards in this deck.
@@ -91,7 +80,7 @@ public class Deck {
 			cards[i] = cards[rand];
 			cards[rand] = tmp;
 		}*/
-		System.out.println("kek");
+		//System.out.println("kek");
 		for (int i = size-1; i >= 0; i--)
 		{
 			rand = (int) (Math.floor(Math.random()*(size-1)));
