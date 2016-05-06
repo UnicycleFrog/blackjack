@@ -1,6 +1,5 @@
 package blackjack;
 
-<<<<<<< HEAD
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -51,14 +50,6 @@ public class BlackjackGUIRunner extends JFrame {
 		//BlackjackGUI gui = new BlackjackGUI(board);
 		BlackjackGUIRunner test = new BlackjackGUIRunner();
 
-=======
-public class BlackjackGUIRunner {
-
-	public static void main(String[] args) {
-		Board board = new BlackjackBoard();
-		CardGameGUI gui = new CardGameGUI(board);
-		gui.displayGame();
->>>>>>> ab12a8dcc96fec92b515325f1e953ea1bf6478e4
 	}
 
 }
