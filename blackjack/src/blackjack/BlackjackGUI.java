@@ -54,7 +54,7 @@ public class BlackjackGUI extends Canvas implements ActionListener{
 	{
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
-
+		
 			
 			
 		//take a snap shop of the current screen and same it as an image
@@ -72,6 +72,8 @@ public class BlackjackGUI extends Canvas implements ActionListener{
 		graphToBack.setColor(Color.black);
 		graphToBack.drawString("Games Played: " + gamesPlayed, 25, 50);
 		graphToBack.drawString("Wins: " + totalWins, 25, 75);
+		if(deck.size() < 4)
+			deck = new Deck(ranks, suits, pointValues);
 		if(player.size() > 0)
 			graphToBack.drawString("Player score: " + player.score(), 400, 375);
         if (player.score() == 21 || dealer.score() == 21)
